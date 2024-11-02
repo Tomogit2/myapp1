@@ -11,26 +11,22 @@
 <body>
   <div class="order-wrapper">
     <h2>注文内容確認</h2>
-    <!-- 変数$totalPaymentを定義し、数値の0を代入してください -->
     <?php $totalPayment = 0 ?>
     
     <?php foreach ($menus as $menu): ?>
       <?php 
-        $orderCount = $_POST[$menu->getName()];
-        $menu->setOrderCount($orderCount);
-        // $totalPaymentに、$menuのgetTotalPriceメソッドで得た値を足してください
+        $inputOrderCount = $_POST[$menu->getName()];
+        $menu->setOrderCount($inputOrderCount);
         $totalPayment += $menu->getTotalPrice();
-        
       ?>
       <p class="order-amount">
         <?php echo $menu->getName() ?>
         x
-        <?php echo $orderCount ?>
+        <?php echo $menu->getOrderCount() ?>
         個
       </p>
       <p class="order-price"><?php echo $menu->getTotalPrice() ?>円</p>
     <?php endforeach ?>
-    <!-- $totalPaymentを表示してください -->
     <h3>合計金額: <?php echo $totalPayment ?>円</h3>
   </div>
 </body>
